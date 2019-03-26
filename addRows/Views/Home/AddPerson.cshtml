@@ -1,0 +1,30 @@
+﻿
+<head>
+    <title>title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="margin-top: 40px;">
+        <form method="POST" action="/home/add">
+            <div class="row">
+                <div class="col-6 offset-md-3">
+                    <div id="rows">
+                        <input type="text" name="people[0].firstName" placeholder="First Name" class="form-control" />
+
+                        <input type="text" name="people[0].lastName" placeholder="Last Name" class="form-control" />
+
+                        <input type="text" name="people[0].age" placeholder="Age" class="form-control" />
+
+                    </div>
+                        <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </form>
+        
+        <button id="newrow" class="btn btn alert-info">new row</button>
+    </div>
+</body>
+
+@section scripts {
+    <script src="/Scripts/index.js"></script>
+}

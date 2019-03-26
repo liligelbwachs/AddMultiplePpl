@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AddPerson.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,27 @@ namespace addRows.Controllers
     {
         public ActionResult Index()
         {
+            PeopleManager mgr = new PeopleManager(Properties.Settings.Default.ConStr);
+            IEnumerable<People> ppl = mgr.GetAllPeople();
+            return View(ppl);
+
+        }
+
+        public ActionResult AddPerson()
+        {
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Add(List<People> people)
         {
-            ViewBag.Message = "Your application description page.";
+            PeopleManager mgr = new PeopleManager(Properties.Settings.Default.ConStr);
+            foreach (People p in people)
+            {
+                mgr.AddPerson(p);
+            }
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return Redirect("/home/index");
         }
     }
 }
